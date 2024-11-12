@@ -30,7 +30,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 import userRoutes from "./routes/user.route.js"
+import jobRoutes from "./routes/job.route.js"
+
 app.use("/api/v1/user",userRoutes);
+app.use("/api/v1/job",jobRoutes);
 
 connection();
 
