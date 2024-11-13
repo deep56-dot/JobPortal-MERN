@@ -2,7 +2,6 @@ import { AsyncHandler } from "../middlewares/AsyncHandler.js";
 import ErrorHandler from "../middlewares/error.js";
 import { Job } from "../models/job.model.js";
 
-
 export const postJob = AsyncHandler(async (req, res, next) => {
   const {
     title,
