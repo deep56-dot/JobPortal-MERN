@@ -32,11 +32,13 @@ app.use(express.urlencoded({ extended: true }));
 import userRoutes from "./routes/user.route.js"
 import jobRoutes from "./routes/job.route.js"
 import applicationRoutes from "./routes/applications.route.js"
+import { newsLetterCron } from "./automation/newsLetterCron.js";
 
 app.use("/api/v1/user",userRoutes);
 app.use("/api/v1/job",jobRoutes);
 app.use("/api/v1/application",applicationRoutes);
 
+newsLetterCron();
 connection();
 
 

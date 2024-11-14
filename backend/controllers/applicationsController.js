@@ -2,6 +2,7 @@ import { AsyncHandler } from "../middlewares/AsyncHandler.js";
 import ErrorHandler from "../middlewares/error.js";
 import { Application } from "../models/applications.model.js";
 import { Job } from "../models/job.model.js";
+import {v2 as cloudinary} from "cloudinary"
 
 
 export const postApplication = AsyncHandler(async(req,res,next)=>{
