@@ -4,7 +4,8 @@ import cors from "cors";
 import fileUpload from "express-fileupload";
 import cookieParser from "cookie-parser";
 import { connection } from "./database/connection.js";
-
+import { newsLetterCron } from "./automation/newsLetterCron.js";
+import { errorMiddleware } from "./middlewares/error.js";
 
 
 const app = express();
@@ -32,7 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 import userRoutes from "./routes/user.route.js"
 import jobRoutes from "./routes/job.route.js"
 import applicationRoutes from "./routes/applications.route.js"
-import { newsLetterCron } from "./automation/newsLetterCron.js";
+
 
 app.use("/api/v1/user",userRoutes);
 app.use("/api/v1/job",jobRoutes);
@@ -40,6 +41,7 @@ app.use("/api/v1/application",applicationRoutes);
 
 newsLetterCron();
 connection();
+app.use(errorMiddleware)
 
 
 export default app;

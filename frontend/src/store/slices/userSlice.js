@@ -120,6 +120,7 @@ export const login = (data) => async (dispatch) => {
     dispatch(userSlice.actions.loginSuccess(response.data));
     dispatch(userSlice.actions.clearAllErrors());
   } catch (error) {
+    console.log(error.response.data.message)
     dispatch(userSlice.actions.loginFailed(error.response.data.message));
   }
 };

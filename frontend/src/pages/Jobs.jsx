@@ -14,6 +14,7 @@ const Jobs = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
 
   const { jobs, loading, error } = useSelector((state) => state.jobs);
+  const {user,isAuthenticated} = useSelector((state)=> state.user);
 
   const handleCityChange = (city) => {
     setCity(city);
@@ -181,14 +182,14 @@ const Jobs = () => {
                           <span>Posted On:</span>{" "}
                           {element.jobPostedOn.substring(0, 10)}
                         </p>
-                        <div className="btn-wrapper">
+                       {isAuthenticated && user.role==="Job Seeker" && ( <div className="btn-wrapper">
                           <Link
                             className="btn"
                             to={`/post/application/${element._id}`}
                           >
                             Apply Now
                           </Link>
-                        </div>
+                        </div>)}
                       </div>
                     );
                   })}

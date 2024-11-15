@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./App.css"
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
 import Navbar from './components/Navbar'
@@ -10,7 +10,16 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import Footer from './components/Footer'
+import { ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from 'react-redux'
+import { getUser } from './store/slices/userSlice'
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
   return (
     <>
       <Router>
@@ -28,6 +37,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
+        <ToastContainer position="top-center" theme="dark" />
       </Router>
     </>
   )
