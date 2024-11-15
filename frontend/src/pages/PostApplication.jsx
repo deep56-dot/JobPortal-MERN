@@ -11,7 +11,6 @@ import { fetchSingleJob } from "../store/slices/jobSlice";
 import { IoMdCash } from "react-icons/io";
 import { FaToolbox } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-import { getUser } from "../store/slices/userSlice";
 
 const PostApplication = () => {
   const { singleJob } = useSelector((state) => state.jobs);
@@ -47,17 +46,13 @@ const PostApplication = () => {
   };
 
   useEffect(() => {
-    dispatch(getUser)
-    if (isAuthenticated && user) {
-      setName(user.name );
-      setEmail(user.email );
-      setPhone(user.phone );
-      setAddress(user.address );
-      setCoverLetter(user.coverLetter );
-      setResume((user.resume && user.resume.url));
-    }
-    else{
-      navigateTo("/")
+    if (user) {
+      setName(user.name || "");
+      setEmail(user.email || "");
+      setPhone(user.phone || "");
+      setAddress(user.address || "");
+      setCoverLetter(user.coverLetter || "");
+      setResume((user.resume && user.resume.url) || "");
     }
     if (error) {
       toast.error(error);
@@ -129,7 +124,6 @@ const PostApplication = () => {
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
-          
             
               <div>
                 <label>Coverletter</label>
@@ -143,8 +137,8 @@ const PostApplication = () => {
                 <label>Resume</label>
                 <input type="file" onChange={resumeHandler} />
               </div>
-          
-          
+            
+         
 
           
             <div style={{ alignItems: "flex-end" }}>
