@@ -95,7 +95,8 @@ export const getAllEmployerApplications = AsyncHandler(async(req,res,next)=>{
         });
 })
 
-export const getAllJobSeekersApplications = AsyncHandler(async(req,res,next)=> async (req, res, next) => {
+export const getAllJobSeekersApplications = AsyncHandler(
+  async (req, res, next) => {
     const { _id } = req.user;
     const applications = await Application.find({
       "jobSeekerInfo.id": _id,
@@ -105,7 +106,8 @@ export const getAllJobSeekersApplications = AsyncHandler(async(req,res,next)=> a
       success: true,
       applications,
     });
-  })
+  }
+);
 
 export const deleteAppliaction = AsyncHandler(async(req,res,next)=>{
     const { id } = req.params;

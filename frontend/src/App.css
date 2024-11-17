@@ -14,6 +14,10 @@ input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.job-details footer h3{
+  color: black;
+}
 .btn,
 .black_btn,
 .outline_btn {
