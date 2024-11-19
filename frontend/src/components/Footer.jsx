@@ -14,7 +14,7 @@ const Footer = () => {
     <>
       <footer>
         <div>
-          <img src="/logo.png" alt="logo" />
+          <img src="/logo_white.png" alt="logo" />
         </div>
         <div>
           <h4>Support</h4>

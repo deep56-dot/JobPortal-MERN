@@ -9,7 +9,7 @@ const Navbar = () => {
     <>
       <nav className={show ? "navbar show_navbar" : "navbar"}>
         <div className="logo">
-          <img src="/logo.webp" alt="logo" />
+          <img src="/logo_white.png" alt="logo" />
         </div>
         <div className="links">
           <ul>
