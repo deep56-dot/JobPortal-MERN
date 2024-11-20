@@ -92,7 +92,7 @@ export const register = (data) => async (dispatch) => {
   dispatch(userSlice.actions.registerRequest());
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/v1/user/register",
+      "https://jobportal-mern-1ibt.onrender.com/api/v1/user/register",
       data,
       {
         withCredentials: true,
@@ -110,7 +110,7 @@ export const login = (data) => async (dispatch) => {
   dispatch(userSlice.actions.loginRequest());
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/v1/user/login",
+      "https://jobportal-mern-1ibt.onrender.com/api/v1/user/login",
       data,
       {
         withCredentials: true,
@@ -129,7 +129,7 @@ export const getUser = () => async (dispatch) => {
   dispatch(userSlice.actions.fetchUserRequest());
   try {
     const response = await axios.get(
-      "http://localhost:3000/api/v1/user/getuser",
+      "https://jobportal-mern-1ibt.onrender.com/api/v1/user/getuser",
       {
         withCredentials: true,
       }
@@ -143,7 +143,7 @@ export const getUser = () => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   try {
     const response = await axios.get(
-      "http://localhost:3000/api/v1/user/logout",
+      "https://jobportal-mern-1ibt.onrender.com/api/v1/user/logout",
       {
         withCredentials: true,
       }
