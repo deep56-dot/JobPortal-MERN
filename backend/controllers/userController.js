@@ -1,7 +1,7 @@
 import { AsyncHandler } from "../middlewares/AsyncHandler.js";
 import ErrorHandler from "../middlewares/error.js";
 import { User } from "../models/user.model.js";
-import { sendToken } from "../utils/jwtToken.js";
+// import { sendToken } from "../utils/jwtToken.js";
 import {v2 as cloudinary} from "cloudinary"
 
 export const register = AsyncHandler(async (req, res, next) => {
@@ -68,7 +68,24 @@ export const register = AsyncHandler(async (req, res, next) => {
         }
       }
       const user = await User.create(userData);
-      sendToken(user, 201, res, "User Registered.");
+      const token = user.getJWTToken();
+ 
+      const options = {
+        expires: new Date(
+          Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+        ),
+        httpOnly: true,
+        secure:true,
+        sameSite: "None"
+      };
+    
+      res.status(statusCode).cookie("token", token, options).json({
+        success: true,
+        user,
+        message:"User Registered",
+        token,
+      });
+      
     } catch (error) {
       next(error);
     }
@@ -92,7 +109,23 @@ export const register = AsyncHandler(async (req, res, next) => {
     if (user.role !== role) {
       return next(new ErrorHandler("Invalid user role.", 400));
     }
-    sendToken(user, 200, res, "User logged in successfully.");
+    const token = user.getJWTToken();
+ 
+    const options = {
+      expires: new Date(
+        Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+      ),
+      httpOnly: true,
+      secure:true,
+      sameSite: "None"
+    };
+  
+    res.status(200).cookie("token", token, options).json({
+      success: true,
+      user,
+      message:"user Log in sucessfully",
+      token,
+    });
   });
 
   export const logout = AsyncHandler( async(req,res,next)=>{
